@@ -9,10 +9,13 @@ const TopMenu = () => {
   const navigate = useNavigate();  // Initialize navigate hook for navigation
 
   const getLabel = () => {
-    if (location.pathname === '/') {
+    if (location.pathname === '/trends') {
       return 'Trends';
     } else if (location.pathname === '/summary') {
       return 'Summary';
+    }
+    else if (location.pathname === '/flashcard') {
+      return 'Flash-Card';
     }
     return ''; 
   };
