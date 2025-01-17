@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
 
     // Call the OpenAI API for summarization
     const aiResponse = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo', // You can switch to gpt-3.5-turbo for faster response times
+      model: 'gpt-4o-mini', // You can switch to gpt-3.5-turbo for faster response times
       messages: [
         { role: 'system', content: `You are a skilled news summarizer. Summarize the content ${selectedLanguage}.` },
         { role: 'user', content: prompt },

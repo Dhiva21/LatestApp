@@ -4,16 +4,18 @@ const bodyParser = require('body-parser');
 const trendsRouter = require('./routes/trends');
 const summarizeRouter = require('./routes/summary');
 const flashRouter = require('./routes/flash');
+const morgan = require('morgan');
 const app = express();
 const PORT = 5000;
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(morgan('dev'));
 
 // Routes
-app.use('/', trendsRouter);
-app.use('/', summarizeRouter);
+app.use('/trends', trendsRouter);
+app.use('/summary', summarizeRouter);
 app.use('/', flashRouter);
 
 // Start the server

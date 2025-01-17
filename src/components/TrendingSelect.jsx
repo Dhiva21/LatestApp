@@ -77,7 +77,7 @@ function TrendingSelect({ selectedState,setSelectedState,region , setRegion }) {
         return;
       }
 
-      const response = await axios.get(`http://localhost:5000/?region=${regionCode}`, { responseType: 'text' });
+      const response = await axios.get(`http://localhost:5000/trends/?region=${regionCode}`, { responseType: 'text' });
 
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(response.data, "application/xml");
