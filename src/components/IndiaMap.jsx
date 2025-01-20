@@ -33,7 +33,7 @@ const IndiaMap = ({ onStateSelect ,region,setRegion }) => {
 
         // Create projection
         const projection = d3.geoMercator()
-          .center([60.9629, 20.5937]) // Center of India
+          .center([45.9629, 23.5937]) // Center of India
           .scale(500)
           .translate([width / 2, height / 2]);
 

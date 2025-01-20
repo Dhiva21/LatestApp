@@ -42,7 +42,9 @@ const SummarizeNews = () => {
       setLoading(true);
       setSummary('');
       
-      const response = await fetch('http://localhost:5000/summary', {
+      const apiUrl = import.meta.env.VITE_API_URL;
+    
+      const response = await fetch(`${apiUrl}/summary`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

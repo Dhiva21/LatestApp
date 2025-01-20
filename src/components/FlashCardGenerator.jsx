@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Form, Spinner } from 'react-bootstrap';
+import { Form, Spinner } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -12,6 +12,13 @@ const FlashCardGenerator = () => {
   const [flashcards, setFlashcards] = useState('');
   const [cardTitle, setCardTitle] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loadingTimer, setLoadingTimer]= useState(0);
+
+
+
+
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,26 +26,43 @@ const FlashCardGenerator = () => {
     setCardTitle('');
     if (!url) return alert("Please enter a URL.");
     setLoading(true);
+  
+    setLoadingTimer(0); // Reset the timer
+    const interval = setInterval(() => {
+      setLoadingTimer((prev) => (Number(prev) + 0.1).toFixed(1));
+    }, 100);
+  
     try {
-      const response = await fetch('http://localhost:5000', {
+      const startTime = performance.now(); // Record start time
+    //  console.log(process.env.REACT_APP_FRONT_PORT_URL);
+    const apiUrl = import.meta.env.VITE_API_URL;
+      const response  = await fetch( apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ url }),
       });
-
+  
       const data = await response.json();
+  
+      const endTime = performance.now(); // Record end time
+      const totalLoadingTime = ((endTime - startTime) / 1000).toFixed(1); // Convert to seconds
+  
       const { title, flashcards } = data;
-      console.log(data);
+      console.log('Data:', data);
+  
       setCardTitle(title);
       setFlashcards(flashcards);
+      setLoadingTimer(totalLoadingTime); // Update timer to the total loading time
     } catch (error) {
       console.error("Error generating flashcards:", error);
     } finally {
-      setLoading(false);
+      clearInterval(interval); // Stop the timer interval
+      setLoading(false); // End loading state
     }
   };
+  
 
   const handleDownload = () => {
     if (!flashcards) return alert("No flashcards to download!");
@@ -64,6 +88,12 @@ const FlashCardGenerator = () => {
     const sizeInBytes = new Blob([fileContent]).size;
     return `${(sizeInBytes / 1024).toFixed(2)} KB`;
   };
+
+
+
+
+
+
 
   return (
     <Container fluid>
@@ -108,6 +138,7 @@ const FlashCardGenerator = () => {
                     style={{ position: 'relative', zIndex: 1 }}
                   />
                   {loading && (
+                    <>
                     <div
                       style={{
                         position: 'absolute',
@@ -120,9 +151,22 @@ const FlashCardGenerator = () => {
                     >
                       <Spinner animation="border" />
                     </div>
+                      <div
+                      style={{
+                        position: 'absolute',
+                        bottom: '0%',
+                        right: '5%',
+                        transform: 'translate(-50%, -50%)',
+                        zIndex: 2,
+                        pointerEvents: 'none',
+                      }}
+                      >
+                      Processing | {loadingTimer} ms
+                      </div>
+                      </>
                   )}
                 </div>
-                <div className='download mt-3'>
+                <div className='download mt-3' style={{ position: 'relative' }}>
                   <div className='downloadBorder'>
                   <div className='d-flex align-items-center justify-content-between'>
                           <div className='d-flex align-items-center'>
@@ -130,8 +174,39 @@ const FlashCardGenerator = () => {
                             <p className='mb-0'>Download Flash-Card</p>
                           </div>
                         </div>
+
+                       
                           
                         </div>
+
+                        {loading && (
+                    <>
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        zIndex: 2,
+                        pointerEvents: 'none',
+                      }}
+                    >
+                      <Spinner animation="border" />
+                    </div>
+                      <div
+                      style={{
+                        position: 'absolute',
+                        bottom: '0%',
+                        right: '5%',
+                        transform: 'translate(-50%, -50%)',
+                        zIndex: 2,
+                        pointerEvents: 'none',
+                      }}
+                      >
+                      Processing | {loadingTimer} ms
+                      </div>
+                      </>
+                  )}
 
 
               <div className='h-100'>
@@ -152,12 +227,14 @@ const FlashCardGenerator = () => {
                         </div>
                       </>
                     ) : (
+                      <> {
+                      !loading && 
                         <div className='fileIcon'>
-                          <File/>
+                          <File />
                         </div>
-                      
-                      
-                    )}
+                          }
+                        </>
+                      )}
               </div>
                   
                  
