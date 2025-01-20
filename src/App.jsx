@@ -1,7 +1,7 @@
 
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { TrendingUp,Newspaper } from "lucide-react";
+import { TrendingUp,Newspaper,IdCard } from "lucide-react";
 import Trends from './pages/Trends';
 import Summarize from './pages/Summarize';
 import LoginPage from './pages/Login';
@@ -10,7 +10,7 @@ function App() {
    const menuItems = [
     { icon: <TrendingUp size={20} />, label: "Trends", path: "/trends" },
     { icon: <Newspaper size={20} />, label: "Summarize", path: "/summary" },
-    { icon: <Newspaper size={20} />, label: "FlashCard", path: "/flashcard" },
+    { icon: <IdCard size={20} />, label: "FlashCard", path: "/flashcard" },
   ];
 
   return (

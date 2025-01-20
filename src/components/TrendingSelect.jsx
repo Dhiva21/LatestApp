@@ -76,8 +76,8 @@ function TrendingSelect({ selectedState,setSelectedState,region , setRegion }) {
         console.error('No region code found for the selected region');
         return;
       }
-
-      const response = await axios.get(`http://localhost:5000/trends/?region=${regionCode}`, { responseType: 'text' });
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await axios.get(`${apiUrl}/trends/?region=${regionCode}`, { responseType: 'text' });
 
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(response.data, "application/xml");
