@@ -84,15 +84,15 @@ const IndiaMap = ({ onStateSelect ,region,setRegion }) => {
               .style('left', `${x + 10}px`)
               .style('top', `${y - 25}px`); 
           })
-          .on('mouseout', function(event, d) {
-            // Reset color only if the state is not selected
-            if (d.properties.name !== selectedState) {
-              d3.select(this).style('fill', '#cbd5e0');
-            }
+                .on('mouseout', function(event, d) {
+                  // Reset color only if the state is not selected
+                  if (d.properties.name !== selectedState) {
+                    d3.select(this).style('fill', '#cbd5e0');
+                  }
 
-            // Hide tooltip
-            tooltip.style('visibility', 'hidden');
-          })
+                  // Hide tooltip
+                  tooltip.style('visibility', 'hidden');
+                })
           .on('click', function(event, d) {
             const clickedState = d.properties.name;
             if (clickedState === selectedState || clickedState === region ) {
