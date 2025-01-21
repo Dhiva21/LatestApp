@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {Container } from "react-bootstrap";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import TrendingSelect from '../components/TrendingSelect';
+import TrendingSelect from './TrendingSelect';
 // import { TrendingBtn } from '../components/TrendingBtn';
 // import TrendingText from '../components/TrendingText';
 import '../css/Trending.css'
