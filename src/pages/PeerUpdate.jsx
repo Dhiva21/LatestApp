@@ -1,15 +1,16 @@
 import React from 'react'
 import Layout from '../Layout/Layout'
 import FlashCardGenerator from '../components/FlashCardGenerator'
+import PeerNews from '../components/PeerNews'
 
-const FlashCard = () => {
+const PeerUpdate = () => {
   return (
     <>
     <Layout>
-    <FlashCardGenerator/>
+   <PeerNews/>
   </Layout>
   </>
   )
 }
 
-export default FlashCard
+export default PeerUpdate

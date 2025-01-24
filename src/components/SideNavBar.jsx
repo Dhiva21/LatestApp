@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom"; 
 import { Menu, X, Home, Users } from "lucide-react";
 import logo from '../assets/images/logo.png';
 import '../css/SideNavBar.css';
+import { MenuContext } from '../App'
 
-const SideNavBar = ({menuItems}) => {
+const SideNavBar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     // const [label, setLabel] = useState();
-
+ const {menuItems :menuSideBar}= useContext(MenuContext);
+ console.log(menuSideBar)
 
   return (
     <>
@@ -75,7 +77,7 @@ const SideNavBar = ({menuItems}) => {
 
         {/* Menu Items */}
         <Nav className="flex-column px-2">
-          {menuItems.map((item, index) => (
+          {menuSideBar.map((item, index) => (
             <NavLink
               key={index}
               to={item.path} // Use "to" instead of "href"

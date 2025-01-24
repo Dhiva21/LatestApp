@@ -3,15 +3,20 @@ import SideNavBar from '../components/SideNavBar';
 import TopMenu from '../components/TopMenu';
 import Footer from '../components/Footer';
 
-const Layout = ({ menuItems, children }) => {
+
+
+const Layout = ({ children }) => {
+ console.log(children)
+  
+
     return (
         <div className="d-flex">
             {/* Sidebar */}
-            <SideNavBar menuItems={menuItems} />
+            <SideNavBar/>
             
             {/* Main Content */}
             <div className="flex-grow-1 p-4 h-auto">
-                <TopMenu menuItems={menuItems} />
+                <TopMenu />
                 <div>
                     {children}
                 </div>
