@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Layout from '../Layout/Layout'
  import { Trending } from '../components/Trending'
-const Trends = ({menuItems}) => {
+
+const Trends = () => {
+
+
     return (
       
         <>
-          <Layout menuItems={menuItems}>
+          <Layout >
             <Trending />
         </Layout>
         </>

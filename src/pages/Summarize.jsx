@@ -2,10 +2,10 @@ import React from 'react'
 import Layout from '../Layout/Layout'
 import  SummarizeNews from '../components/SummarizeNews'
 
-const Summarize = ({menuItems}) => {
+const Summarize = () => {
   return (
     <>
-    <Layout menuItems={menuItems}>
+    <Layout>
     <SummarizeNews/>
   </Layout>
   </>

@@ -17,6 +17,9 @@ const TopMenu = () => {
     else if (location.pathname === '/flashcard') {
       return 'Flash-Card';
     }
+    else if (location.pathname === '/peer') {
+      return 'Peer News';
+    }
     return ''; 
   };
 
