@@ -6,9 +6,7 @@ import Trends from './pages/Trends';
 import Summarize from './pages/Summarize';
 import LoginPage from './pages/Login';
 import FlashCard from './pages/FlashCard';
-import PeerNews from   './components/PeerNews'
 import  {createContext } from 'react'
-import Dummy from './pages/PeerUpdate';
 import PeerUpdate from './pages/PeerUpdate';
 import PageNotFound from './pages/PageNotFound';
 

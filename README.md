@@ -12,6 +12,7 @@ Front end
 2. npm install react-bootstrap
 3. npm install axios
 4. npm i d3
+5. npm install react-toastify
 
 //Backend 
 1. npm init -y
