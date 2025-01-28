@@ -20,5 +20,8 @@
     "morgan": "^1.10.0",
     "node-cache": "^5.1.2",
     "openai": "^4.77.4"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
   }
 }
