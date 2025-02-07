@@ -126,6 +126,17 @@ const FlashCardGenerator = () => {
                   <TrendingBtn/>
                 </div>
               </Col>
+
+
+
+
+
+
+
+
+
+
+              
               <Col xs={12} md={6}>
                 <div style={{ position: 'relative' }}>
                   <Form.Label className="text-sm font-medium">OUTPUT</Form.Label>
