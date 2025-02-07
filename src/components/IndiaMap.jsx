@@ -135,15 +135,15 @@ const IndiaMap = ({ onStateSelect ,region,setRegion }) => {
   }, [region]);
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <div className="mapBoxShadow">
-        <svg 
-          ref={svgRef}
-          className="w-full "
-          style={{ backgroundColor: '#ddddde3' }}
-        />
-      </div>
+    <div className="mapContainer">
+    <div className="mapBoxShadow">
+      <svg 
+        ref={svgRef}
+        className="w-full"
+        style={{ height: '100%', backgroundColor: '#ddddde3' }}
+      />
     </div>
+  </div>
   );
 };
 
