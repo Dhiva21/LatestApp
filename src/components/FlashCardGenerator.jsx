@@ -136,6 +136,9 @@ const FlashCardGenerator = () => {
 
 
 
+
+
+
               
               <Col xs={12} md={6}>
                 <div style={{ position: 'relative' }}>
