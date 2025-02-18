@@ -123,7 +123,7 @@ const FlashCardGenerator = () => {
                   </div>
                 </div>
                 <div>
-                  <TrendingBtn/>
+                  <TrendingBtn  submitBtnName="Submit" clearBtnName="Clear" />
                 </div>
               </Col>
 
