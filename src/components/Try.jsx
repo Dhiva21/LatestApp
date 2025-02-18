@@ -1,150 +1,123 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
-import * as d3 from 'd3';
-import '../css/IndiaMap.css';
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { Eye, EyeOff } from 'lucide-react'; 
+import  logoIcon from '../assets/images/logo.png'
+import  sideImg from '../assets/images/sideImg.png'
+import '../css/Login.css';
 
-const IndiaMap = ({ onStateSelect ,region,setRegion }) => {
-  const svgRef = useRef(null);
-  const [selectedState, setSelectedState] = useState(null);  
-  
- 
-  
+const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-    
-    
-  // Memoize the map to prevent unnecessary re-renders
-  const renderMap = useMemo(() => {
-    return async () => {
-      try {
-        if (!svgRef.current) return;
-        const response = await fetch('/map/india.json');
-        // URL= https://raw.githubusercontent.com/Subhash9325/GeoJson-Data-of-Indian-States/refs/heads/master/Indian_States
-        const geoData = await response.json();
+  const navigate = useNavigate();
 
-        // Setup D3
-        const width = 100;
-        const height = 350;
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
 
-        const svg = d3.select(svgRef.current)
-          .attr('width', '100%')
-          .attr('height', height);
-
-        // Clear any existing content
-        svg.selectAll('*').remove();
-
-        // Create projection
-        const projection = d3.geoMercator()
-          .center([45.9629, 23.5937]) // Center of India
-          .scale(500)
-          .translate([width / 2, height / 2]);
-
-        // Create path generator
-        const pathGenerator = d3.geoPath().projection(projection);
-
-        // Create group for map
-        const g = svg.append('g');
-
-        // Tooltip div
-        const tooltip = d3.select('body')
-          .append('div')
-          .attr('class', 'tooltip')
-          .style('position', 'absolute')
-          .style('background-color', '#fff')
-          .style('border', '1px solid #ccc')
-          .style('padding', '5px')
-          .style('border-radius', '4px')
-            .style('visibility', 'hidden')
-            .style('z-index', '1000');
-
-        // Draw the map
-        g.selectAll('path')
-          .data(geoData.features)
-          .enter()
-          .append('path')
-          .attr('d', pathGenerator)
-          .attr('class', 'state')
-          .style('fill', '#cbd5e0')
-          .style('stroke', '#2d3748')
-          .style('stroke-width', '0.5')
-          .style('cursor', 'pointer')
-          .on('mouseover', function(event, d) {
-            if (d.properties.name !== selectedState) {
-              d3.select(this).style('fill', '#4299e1');
-            }
-
-     
-            tooltip
-              .style('visibility', 'visible')
-              .text(d.properties.name);
-
-           
-            const [x, y] = d3.pointer(event);
-
-            // Set tooltip position
-            tooltip
-              .style('left', `${x + 10}px`)
-              .style('top', `${y - 25}px`); 
-          })
-                .on('mouseout', function(event, d) {
-                  // Reset color only if the state is not selected
-                  if (d.properties.name !== selectedState) {
-                    d3.select(this).style('fill', '#cbd5e0');
-                  }
-
-                  // Hide tooltip
-                  tooltip.style('visibility', 'hidden');
-                })
-          .on('click', function(event, d) {
-            const clickedState = d.properties.name;
-            if (clickedState === selectedState || clickedState === region ) {
-             onStateSelect(null);
-              setSelectedState(null);
-              setRegion(null)
-            } else {
-              // Otherwise, update the selected state
-                setSelectedState(clickedState);
-              onStateSelect(clickedState);
-              setRegion(clickedState)
-              console.log(setRegion(clickedState))
-            }
-
-          
-            d3.select(this).style('fill', '#84181a');
-            console.log('Selected state:', clickedState);
-          });
-
-        // After map is drawn, ensure selected state keeps the color
-        g.selectAll('path')
-          .style('fill', function(d) {
-            return d.properties.name === selectedState ? '#84181a' : '#cbd5e0';
-          });
-
-      } catch (error) {
-        console.error('Error loading or rendering map:', error);
+    // Simulating a login API request
+    setTimeout(() => {
+      if (email === 'admin@gmail.com' && password === '1') {
+        setSuccess('Login Successful!');
+        navigate('/trends');
+      } else {
+        setError('Invalid email or password');
       }
-    };
-  }, [selectedState, onStateSelect]);
-
-  useEffect(() => {
-    renderMap(); 
-  }, [renderMap]);
-
-   useEffect(() => {
-    if (region) {
-      setSelectedState(region); 
-    }
-  }, [region]);
+    }, 2000); // Simulate network delay
+  };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <div className="mapBoxShadow">
-        <svg 
-          ref={svgRef}
-          className="w-full "
-          style={{ backgroundColor: '#ddddde3' }}
-        />
-      </div>
-    </div>
+    <section >
+      <Container fluid style={{ height: '100vh' }}>
+        <Row >
+         
+         <Col  xs={12} md={6} xl={8}>
+             <div className="login_bg">
+               <img src={sideImg} className='img-fluid' alt="" />
+             </div>
+         </Col>
+
+         <Col xs={12} md={6} xl={3}>
+  <div className="loginCenter">
+    <Card className="login_box">
+      <Card.Body>
+        <Card.Title className="text-center">
+          <div className="title_logo">
+            <span>
+              <img src={logoIcon} alt="" className="img-fluid" />
+            </span>
+          </div>
+        </Card.Title>
+
+        {/* Error and Success Alerts */}
+        {error && <Alert variant="danger">{error}</Alert>}
+        {success && <Alert variant="success">{success}</Alert>}
+
+        <Form onSubmit={handleLogin}>
+          <Form.Group controlId="formEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formPassword" className="mt-3">
+            <Form.Label>Password</Form.Label>
+            <div className="position-relative">
+              <Form.Control
+                type={showPassword ? "text" : "password"} // Toggles between text and password
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="pr-5" // Adjust padding for icon space
+              />
+              <span
+                className="position-absolute top-50 end-0 translate-middle-y me-2"
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </span>
+            </div>
+          </Form.Group>
+
+          {/* Remember Me and Forgot Password */}
+          <div className="d-flex justify-content-between align-items-center mt-3">
+            <Form.Check 
+              type="checkbox" 
+              id="rememberMe" 
+              label="Remember Me" 
+            />
+            <a href="javascript:void" className="text-primary" style={{ textDecoration: 'none' }}>
+              Forgot Password?
+            </a>
+          </div>
+
+          <div className="text-end mt-5">
+            <Button variant="primary" type="submit" className='btnColor'>
+              Login
+            </Button>
+          </div>
+        </Form>
+      </Card.Body>
+    </Card>
+  </div>
+</Col>
+
+        </Row>
+      </Container>
+    </section>
   );
 };
 
-export default IndiaMap;
+export default LoginPage;
