@@ -75,7 +75,7 @@ const TopMenu = () => {
                 <div className="d-flex align-items-center gap-3 me-2">
                   {/* <span className="avatar-text">{initial}</span> */}
                   <Image src={`https://avatar.iran.liara.run/username?username=${userEmail}`} width="40" roundedCircle />
-                  <div className="mt-3 text-start fw-500">
+                  <div className="mt-3 text-start fw-medium">
                   <p className="mb-0">{userEmail}</p>
                   <p>{userName}</p>
                   </div>

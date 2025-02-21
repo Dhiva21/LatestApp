@@ -31,6 +31,7 @@ const IndiaMap = ({ onStateSelect, region, setRegion }) => {
 
         const g = svg.append('g');
 
+        // Tooltip setup
         const tooltip = d3.select('body')
           .append('div')
           .attr('class', 'tooltip')
@@ -48,30 +49,25 @@ const IndiaMap = ({ onStateSelect, region, setRegion }) => {
           .append('path')
           .attr('d', pathGenerator)
           .attr('class', 'state')
-          .style('fill', '#cbd5e0')
+          .style('fill', '#76c179') // Default state color
           .style('stroke', '#2d3748')
           .style('stroke-width', '0.5')
           .style('cursor', 'pointer')
           .on('mouseover', function(event, d) {
             if (d.properties.name !== selectedState) {
-              d3.select(this).style('fill', '#4299e1');
+              d3.select(this).style('fill', '#9dc9f2'); // Hover color
             }
 
             tooltip
               .style('visibility', 'visible')
-              .text(d.properties.name);
-
-            const [x, y] = d3.pointer(event);
-
-            tooltip
-              .style('left', `${x + 10}px`)
-              .style('top', `${y - 25}px`); 
+              .text(d.properties.name)
+              .style('left', `${event.pageX + 10}px`)
+              .style('top', `${event.pageY - 25}px`); 
           })
           .on('mouseout', function(event, d) {
             if (d.properties.name !== selectedState) {
-              d3.select(this).style('fill', '#cbd5e0');
+              d3.select(this).style('fill', '#88ab75'); // Back to default color
             }
-
             tooltip.style('visibility', 'hidden');
           })
           .on('click', function(event, d) {
@@ -86,12 +82,12 @@ const IndiaMap = ({ onStateSelect, region, setRegion }) => {
               setRegion(clickedState);
             }
 
-            d3.select(this).style('fill', '#84181a');
+            d3.select(this).style('fill', '#FF5733'); // Clicked state color
           });
 
         g.selectAll('path')
           .style('fill', function(d) {
-            return d.properties.name === selectedState ? '#84181a' : '#cbd5e0';
+            return d.properties.name === selectedState ? '#a10037' : '#88ab75';
           });
 
       } catch (error) {

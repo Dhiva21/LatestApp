@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom"; 
 import { Menu, X } from "lucide-react";
-import logo from '../assets/images/logo.png';
+import logo from '../assets/images/logo_federal_white.png';
 import '../css/SideNavBar.css';
 import { MenuContext } from "./Context/MenuProvider";
 
@@ -14,22 +14,23 @@ const SideNavBar = () => {
     <>
       {/* Sidebar */}
       <div
-        className="text-dark vh-100"
+        className="text-dark vh-100 sideNavBg"
         style={{
           position: "fixed", // Make the sidebar fixed
           top: "0",
           left: "0",
-          width: isSidebarOpen ? "250px" : "80px",
+          width: isSidebarOpen ? "145px" : "80px",
           height: "100vh", // Ensure the sidebar covers the full viewport height
           transition: "all 0.3s ease",
           boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
         }}
       >
+        <div className="sideNavInnerColor">
         {/* Header Container */}
         <div
           className="d-flex align-items-center"
           style={{
-            padding: "15px",
+            padding: "0px 1px 1px 7px",
             height: "70px", 
             borderBottom: "1px solid #ddd",
             marginBottom: "20px"
@@ -37,7 +38,7 @@ const SideNavBar = () => {
         >
           <div
             style={{
-              width: isSidebarOpen ? "240px" : "0",
+              width: isSidebarOpen ? "145px" : "0",
               transition: "width 0.3s ease",
               overflow: "hidden",
             }}
@@ -50,7 +51,7 @@ const SideNavBar = () => {
                 maxHeight: "40px",
                 opacity: isSidebarOpen ? 1 : 0,
                 transition: "opacity 0.3s ease",
-                width: '60%',
+                width: '100%',
                 height: '40%',
               }}
             />
@@ -69,6 +70,7 @@ const SideNavBar = () => {
               alignItems: "center",
               justifyContent: "center",
               marginLeft: "auto",
+              color: "white"
             }}
           >
             {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
@@ -76,23 +78,31 @@ const SideNavBar = () => {
         </div>
 
         {/* Menu Items */}
-        <Nav className="flex-column px-2">
+        <Nav className="flex-column sideMenu">
           {menuSideBar.map((item, index) => (
             <NavLink
               key={index}
               to={item.path}
-              className="text-dark d-flex align-items-center py-2 px-2"
+              className="sideMenuList"
               style={({ isActive }) => ({
                 textDecoration: "none",
                 whiteSpace: "nowrap",
-                backgroundColor: isActive ? "rgba(113, 193, 225, 0.1)" : "transparent",
+                backgroundColor: isActive ? "#fff" : "transparent",
                 transition: "all 0.3s ease",
-                width: '100%'
+                width: '100%',
+                height: '65px',       
+                display: 'inline-block',
+                justifyContent: 'end',
+                borderRadius: '50px 0px 0px 50px',
+                color: isActive ? "black": "white",
+                marginLeft:'10px',
+                padding: isSidebarOpen ? '12px 20px': "23px",
               })}
             >
               <div
                 className="d-flex align-items-center"
-                style={{ minWidth: "24px" }}
+                style={{ justifyContent: 'center',             
+                 }}
               >
                 {item.icon}
               </div>
@@ -102,6 +112,7 @@ const SideNavBar = () => {
                   opacity: isSidebarOpen ? 1 : 0,
                   transition: "opacity 0.2s ease",
                   overflow: "hidden",
+                  textAlign:'center'
                 }}
               >
                 {item.label}
@@ -109,12 +120,14 @@ const SideNavBar = () => {
             </NavLink>
           ))}
         </Nav>
+
+        </div>
       </div>
 
       {/* Side Content (scrollable) */}
       <div
         style={{
-          marginLeft: isSidebarOpen ? "250px" : "80px", // Adjust the margin to account for the sidebar width
+          marginLeft: isSidebarOpen ? "145px" : "80px", // Adjust the margin to account for the sidebar width
           padding: "0px",
           height: "100vh",
           overflowY: "auto", // Enable scrolling for the content
@@ -126,4 +139,4 @@ const SideNavBar = () => {
   );
 };
 
-export default SideNavBar;
+export default SideNavBar; 
