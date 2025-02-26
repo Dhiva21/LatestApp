@@ -35,6 +35,12 @@ const TopMenu = () => {
       case '/account': return 'Profie Account';
       case '/account/reset': return 'Reset Password';
       case '/press-pivot': return 'Press-Pivot';
+      case '/youtube-script': return 'Tube Scribe';
+      case '/seo-guru': return 'SEO Guru';
+      case '/editor-mosaic': return 'Editorial Mosaic';
+      case '/option-junction': return 'Opinion Junction';
+      case '/custom-gpt': return 'Custom GPT';
+      case '/federal-bot': return 'The Federal Bot';
       default: return '';
     }
   };
