@@ -1,28 +1,17 @@
-import React,{useState,useEffect} from "react";
-import { Navbar, Nav, Dropdown, Container, Tooltip, OverlayTrigger } from "react-bootstrap";
+import React,{useState,useEffect,useContext} from "react";
+import { Navbar, Nav, Dropdown, Container, Tooltip, OverlayTrigger, Row, Col } from "react-bootstrap";
 import { Bell, Settings, User } from "lucide-react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
 import '../css/TopMenu.css';
+import { MenuContext } from "./Context/MenuProvider";
 
 const TopMenu = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+   const { userName, setUserName, userEmail } = useContext(MenuContext);
 
-  const [initial, setInitial] = useState("");
-
-
-  const userEmail = sessionStorage.getItem("userEmail");
-  const userName= sessionStorage.getItem("userName");
-
-  useEffect(() => {
-    const userEmail = sessionStorage.getItem("userEmail");
-    if (userEmail) {
-      setInitial(userEmail.charAt(0).toUpperCase());
-    }
-  }, []);
-
+ 
 
 
 
@@ -40,6 +29,8 @@ const TopMenu = () => {
       case '/editor-mosaic': return 'Editorial Mosaic';
       case '/option-junction': return 'Opinion Junction';
       case '/custom-gpt': return 'Custom GPT';
+      case '/custom-gpt/federal-assist': return 'Federal Assistant';
+      case '/custom-gpt/federal-editorial': return 'Federal Editorial';
       case '/federal-bot': return 'The Federal Bot';
       default: return '';
     }
@@ -56,11 +47,14 @@ const TopMenu = () => {
   return (
     <Navbar bg="light" variant="light" className="shadow-sm mb-4">
       <Container fluid>
-        <Navbar.Brand className="fw-normal">
+         <Row className="w-100">
+            <Col xs={3}>
+            <Navbar.Brand className="fw-normal">
           Dashboard / <span className="sideLabel">{getLabel()}</span>
         </Navbar.Brand>
-
-        <Navbar.Toggle aria-controls="navbar-nav" />
+             </Col>
+             <Col xs={9}>
+             <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav" className="justify-content-end">
           <Nav className="align-items-center">
             <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip-notifications">Notifications</Tooltip>}>
@@ -111,6 +105,11 @@ const TopMenu = () => {
             </Dropdown>
           </Nav>
         </Navbar.Collapse>
+             </Col>
+         </Row>
+     
+
+      
       </Container>
     </Navbar>
   );

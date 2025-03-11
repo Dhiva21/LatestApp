@@ -2,6 +2,8 @@ import React from 'react';
 import SideNavBar from '../components/SideNavBar';
 import TopMenu from '../components/TopMenu';
 import Footer from '../components/Footer';
+import MobileSideNav from '../components/MobileSideNav';
+import '../css/Layout.css'
 
 
 
@@ -10,7 +12,10 @@ const Layout = ({ children }) => {
   
 
     return (
-        <div className="d-flex">
+
+        <>
+       <MobileSideNav/>
+        <div className="flexTop">
             {/* Sidebar */}
             <SideNavBar/>
             
@@ -25,6 +30,7 @@ const Layout = ({ children }) => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

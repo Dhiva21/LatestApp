@@ -18,6 +18,8 @@ import AccountReset from './components/acccountFeatures/AccountReset';
 import AccountForm from './components/acccountFeatures/AccountForm';
 import CustomGptPage from './pages/CustomGptPage';
 import FederalBotPage from './pages/FederalBotPage';
+import FederalAssist from './components/Custom_GPT/CustomGptSubMenu/FederalAssist'
+import FederalEditorial from './components/Custom_GPT/CustomGptSubMenu/FederalEditorial'
 
 function App() {
   return (
@@ -34,11 +36,15 @@ function App() {
         <Route path="/seo-guru" element={<SeoGuruPage />} />
         <Route path="/editor-mosaic" element={<EditorMosaicPage />} />
         <Route path="/option-junction" element={<OpinionPage />} />
-        <Route path="/custom-gpt" element={<CustomGptPage />} />
+        {/* <Route path="/custom-gpt" element={<CustomGptPage />} /> */}
         <Route path="/federal-bot" element={<FederalBotPage />} />
         <Route path="/account" element={<Account />} >
              <Route index element={<AccountForm/>} /> 
              <Route path='reset' element={<AccountReset/>} /> 
+        </Route>
+        <Route path="/custom-gpt" element={<CustomGptPage />} >
+             <Route  path="federal-assist"  element={<FederalAssist/>} /> 
+             <Route path='federal-editorial' element={<FederalEditorial/>} /> 
         </Route>
         <Route path="*" element={<PageNotFound/>} />
       </Routes>
