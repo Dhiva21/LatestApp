@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
             <SideNavBar/>
             
             {/* Main Content */}
-            <div className="flex-grow-1 p-4 vh-100">
+            <div className="flex-grow-1 p-3 p-md-4 vh-100">
                 <TopMenu />
                 <div>
                     {children}

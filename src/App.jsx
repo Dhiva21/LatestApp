@@ -3,7 +3,8 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Trends from './pages/Trends';
 import Summarize from './pages/Summarize';
-import LoginPage from './pages/Login';
+import Register from './pages/Register';
+import LoginPage from './pages/LoginPage';
 import FlashCard from './pages/FlashCard';
 import PeerUpdate from './pages/PeerUpdate';
 import PageNotFound from './pages/PageNotFound';
@@ -26,7 +27,8 @@ function App() {
     <MenuProvider>
      <Router>
       <Routes>
-        <Route path="/" element={<LoginPage/>} />
+        <Route path="/" element={<Register/>} />
+        <Route path="/login" element={<LoginPage/>} />
         <Route path="/trends" element={<Trends/>} />
         <Route path="/summary" element={<Summarize  />} />
         <Route path="/flashcard" element={<FlashCard  />} />

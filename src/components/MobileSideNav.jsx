@@ -24,7 +24,7 @@ function MobileSideNav() {
           </Navbar.Brand>
                 </Col>
                 <Col xs={2}>
-                <Button variant="outline-light" onClick={() => setShow(true)}>
+                <Button className="border-0 bg-transparent text-light" variant="outline-light" onClick={() => setShow(true)}>
             <Menu size={24} />
           </Button>
                 </Col>
@@ -69,7 +69,7 @@ function MobileSideNav() {
                       alignItems: "center",
                       justifyContent: "space-between",
                       textDecoration: "none",
-                      borderRadius: "0px",
+                      borderRadius:  isActive ? "0px" : "0px",
                       borderBottom: '1px solid #ffff',
                     }}
                   >
@@ -82,7 +82,7 @@ function MobileSideNav() {
 
                   {/* Submenu Items */}
                   {hasSubmenu && isSubmenuOpen && (
-                    <div className="submenu-container" style={{ paddingLeft: "20px",backgroundColor:"#ffff" }}>
+                    <div className="submenu-container" style={{ marginLeft: "20px",backgroundColor:"#ffff" }}>
                       {item.submenu.map((sub, subIndex) => (
                         <NavLink
                           key={subIndex}
@@ -94,7 +94,7 @@ function MobileSideNav() {
                             color: location.pathname === sub.path ? "#ffff" : "black",
                             backgroundColor: location.pathname === sub.path ? "#fff" : "transparent",
                             textDecoration: "none",
-                            borderRadius: "5px",
+                            borderRadius: "0px",
                           
                           }}
                           onClick={() => setShow(false)} 

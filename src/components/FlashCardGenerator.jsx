@@ -36,7 +36,7 @@ const FlashCardGenerator = () => {
       const startTime = performance.now(); // Record start time
     //  console.log(process.env.REACT_APP_FRONT_PORT_URL);
     const apiUrl = import.meta.env.VITE_API_URL;
-      const response  = await fetch( apiUrl, {
+      const response  = await fetch(`${apiUrl}/flash`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

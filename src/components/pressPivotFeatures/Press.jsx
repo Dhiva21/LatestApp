@@ -109,7 +109,10 @@ function App() {
     <div className="">
       <div className="bg-dark text-white py-5 mb-5 position-relative">
         <div className="container-fluid">
-          <div className="d-flex justify-content-between align-items-center">
+           <div className="row">
+           <div className="d-md-flex d-block
+           
+           justify-content-md-between justify-content-start align-items-center">
             <div className="d-flex align-items-center">
              
               <div>
@@ -129,6 +132,8 @@ function App() {
               </div>
             </div>
           </div>
+           </div>
+         
         </div>
       </div>
 

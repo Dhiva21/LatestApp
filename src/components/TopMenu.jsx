@@ -37,7 +37,7 @@ const TopMenu = () => {
   };
 
   const handleLogout = () => {
-    navigate('/');
+    navigate('/login');
     sessionStorage.clear();
   };
 
@@ -47,25 +47,25 @@ const TopMenu = () => {
   return (
     <Navbar bg="light" variant="light" className="shadow-sm mb-4">
       <Container fluid>
-         <Row className="w-100">
-            <Col xs={3}>
+         <Row className="w-100 align-items-center">
+            <Col md={3} xs={3}>
             <Navbar.Brand className="fw-normal">
           Dashboard / <span className="sideLabel">{getLabel()}</span>
         </Navbar.Brand>
              </Col>
-             <Col xs={9}>
+             <Col md={9} xs={9}>
              <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav" className="justify-content-end">
           <Nav className="align-items-center">
             <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip-notifications">Notifications</Tooltip>}>
               <Nav.Link href="#notifications" className="d-flex align-items-center">
-                <Bell size={20} className="me-2" />
+                <Bell size={20} className="me-2 d-none d-md-block" />
               </Nav.Link>
             </OverlayTrigger>
 
             <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip-settings">Settings</Tooltip>}>
               <Nav.Link href="#settings" className="d-flex align-items-center">
-                <Settings size={20} className="me-2" />
+                <Settings size={20} className="me-2 d-none d-md-block" />
               </Nav.Link>
             </OverlayTrigger>
 
@@ -76,7 +76,7 @@ const TopMenu = () => {
                   {/* <span className="avatar-text">{initial}</span> */}
                   <Image src={`https://avatar.iran.liara.run/username?username=${userEmail}`} width="40" roundedCircle />
                   <div className="mt-3 text-start fw-medium">
-                  <p className="mb-0">{userEmail}</p>
+                  <p className="mb-0 d-none d-md-block">{userEmail}</p>
                   <p>{userName}</p>
                   </div>
                  

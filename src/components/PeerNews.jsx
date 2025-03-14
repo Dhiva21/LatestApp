@@ -40,7 +40,7 @@ function PeerNews() {
       <p>Select a news source from the dropdown to view its latest headlines with clickable links.</p>
 
       <Row className="mb-4">
-        <Col sm={12} md={6}>
+        <Col sm={12} md={6}  className="mb-4">
           <Form.Select
             onChange={(e) => setSelectedSource(e.target.value)}
             value={selectedSource}
