@@ -84,15 +84,15 @@ const TopMenu = () => {
   return (
     <Navbar bg="light" variant="light" className="shadow-sm mb-4">
       <Container fluid>
-         <Row className="w-100 align-items-center">
-         <Col md={3} xs={3}>
+         <Row className="w-100 align-items-end">
+         <Col md={3} xs={9}>
   <Breadcrumb>
     <Breadcrumb.Item className="breadCrumbMain">Dashboard</Breadcrumb.Item>
      <span className="mx-2">&gt;</span>
     <Breadcrumb.Item active className="custom-breadcrumb "> {getLabel()}</Breadcrumb.Item>
   </Breadcrumb>
 </Col>
-             <Col md={9} xs={9}>
+             <Col md={9} xs={3}>
              <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav" className="justify-content-end">
           <Nav className="align-items-center">
@@ -116,7 +116,7 @@ const TopMenu = () => {
                   <Image src={`https://avatar.iran.liara.run/username?username=${userEmail}`} width="40" roundedCircle />
                   <div className="mt-3 text-start fw-medium">
                   <p className="mb-0 d-none d-md-block">{userEmail}</p>
-                  <p>{userName}</p>
+                  <p className="mb-0 d-none d-md-block">{userName}</p>
                   </div>
                  
                 </div>
