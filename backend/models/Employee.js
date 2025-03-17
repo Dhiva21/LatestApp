@@ -25,9 +25,13 @@ const userSchema = new mongoose.Schema({
     type: Date, 
     default: null,
   },
+  lastLogout: {
+    type: Date, 
+    default: null,
+  },
 });
 
-// Hash the password before saving it to the database
+
 userSchema.pre('save', async function(next) {
   if (this.isModified('passwordHash')) {
     this.passwordHash = await bcrypt.hash(this.passwordHash, 10);

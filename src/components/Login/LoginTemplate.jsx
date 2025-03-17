@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // ✅ Import axios
+import axios from 'axios';
 import {  Form, Button, Card, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react'; 
@@ -24,13 +24,13 @@ const LoginTemplate = () => {
     setSuccess(null);
 
     try {
-      const result = await axios.post(`${apiUrl}/login`, { loginId, password  });
+      const result = await axios.post(`${apiUrl}`, { loginId, password  });
       console.log(loginId, password ,name, result.data )
 
       if (result.data.message === "Login successful") {
         setLastLogin(result.data.lastLogin);
         setSuccess("Login successful!");
-        
+        sessionStorage.removeItem("lastLogout");
         sessionStorage.setItem("userEmail", loginId);
         sessionStorage.setItem("userName", result.data.name);
       

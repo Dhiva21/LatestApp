@@ -1,16 +1,17 @@
 import React,{useState,useEffect,useContext} from "react";
-import { Navbar, Nav, Dropdown, Container, Tooltip, OverlayTrigger, Row, Col } from "react-bootstrap";
+import { Navbar, Nav, Dropdown, Container, Tooltip, OverlayTrigger, Row, Col,Breadcrumb } from "react-bootstrap";
 import { Bell, Settings, User } from "lucide-react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
 import '../css/TopMenu.css';
 import { MenuContext } from "./Context/MenuProvider";
+import axios from 'axios';
 
 const TopMenu = () => {
   const location = useLocation();
   const navigate = useNavigate();
    const { userName, setUserName, userEmail } = useContext(MenuContext);
-
+   const apiUrl = import.meta.env.VITE_API_URL;
  
 
 
@@ -21,7 +22,7 @@ const TopMenu = () => {
       case '/summary': return 'Summary';
       case '/flashcard': return 'Flash-Card';
       case '/peer': return 'Peer News';
-      case '/account': return 'Profie Account';
+      case '/account': return 'Profile Account';
       case '/account/reset': return 'Reset Password';
       case '/press-pivot': return 'Press-Pivot';
       case '/youtube-script': return 'Tube Scribe';
@@ -36,10 +37,46 @@ const TopMenu = () => {
     }
   };
 
-  const handleLogout = () => {
-    navigate('/login');
-    sessionStorage.clear();
-  };
+  // const handleLogout = () => {
+  //   navigate('/');
+  //   sessionStorage.clear();
+  // };
+
+
+
+
+  const handleLogout = async () => {
+    try {
+        const loginId = sessionStorage.getItem("userEmail");
+
+        const response = await axios.post(`${apiUrl}/logout`, { loginId });
+
+        if (response.status === 200) {
+            const { lastLogout } = response.data;
+            console.log(response.data)
+
+            // Store last logout time
+            sessionStorage.setItem("lastLogout", lastLogout);
+
+            console.log('Logout successful:', lastLogout);
+
+            // Clear session storage
+            sessionStorage.removeItem("userEmail");
+            sessionStorage.removeItem("userName");
+
+            navigate('/'); // Redirect to login
+        }
+    } catch (error) {
+        console.error('Logout error:', error.response?.data || error.message);
+    }
+};
+
+
+
+
+
+
+
 
   const AccountNavigation = () => {
     navigate('/account');
@@ -48,24 +85,26 @@ const TopMenu = () => {
     <Navbar bg="light" variant="light" className="shadow-sm mb-4">
       <Container fluid>
          <Row className="w-100 align-items-center">
-            <Col md={3} xs={3}>
-            <Navbar.Brand className="fw-normal">
-          Dashboard / <span className="sideLabel">{getLabel()}</span>
-        </Navbar.Brand>
-             </Col>
+         <Col md={3} xs={3}>
+  <Breadcrumb>
+    <Breadcrumb.Item className="breadCrumbMain">Dashboard</Breadcrumb.Item>
+     <span className="mx-2">&gt;</span>
+    <Breadcrumb.Item active className="custom-breadcrumb "> {getLabel()}</Breadcrumb.Item>
+  </Breadcrumb>
+</Col>
              <Col md={9} xs={9}>
              <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav" className="justify-content-end">
           <Nav className="align-items-center">
             <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip-notifications">Notifications</Tooltip>}>
               <Nav.Link href="#notifications" className="d-flex align-items-center">
-                <Bell size={20} className="me-2 d-none d-md-block" />
+                <Bell size={20} className="me-2 d-none d-lg-block" />
               </Nav.Link>
             </OverlayTrigger>
 
             <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip-settings">Settings</Tooltip>}>
               <Nav.Link href="#settings" className="d-flex align-items-center">
-                <Settings size={20} className="me-2 d-none d-md-block" />
+                <Settings size={20} className="me-2 d-none d-lg-block" />
               </Nav.Link>
             </OverlayTrigger>
 
@@ -92,10 +131,10 @@ const TopMenu = () => {
                   <User size={20} className="me-2" />
                   View Profile
                 </Dropdown.Item>
-                <Dropdown.Item href="#settings" >
+                {/* <Dropdown.Item href="#settings" >
                   <Settings size={20} className="me-2" />
                   Account Settings
-                </Dropdown.Item>
+                </Dropdown.Item> */}
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={handleLogout}>
                   <Bell size={20} className="me-2" />

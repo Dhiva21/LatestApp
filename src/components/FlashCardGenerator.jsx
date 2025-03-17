@@ -109,7 +109,7 @@ const FlashCardGenerator = () => {
         <Col xs={12}>
           <Form onSubmit={handleSubmit} className="mt-4">
             <Row>
-              <Col xs={12} md={6}>
+              <Col xs={12} md={12} xl={6}>
                 <div className="summaryBox">
                   <div className="mb-3">
                     <Form.Label className="text-sm font-medium">URL</Form.Label>
@@ -137,7 +137,7 @@ const FlashCardGenerator = () => {
 
 
               
-              <Col xs={12} md={6}>
+              <Col xs={12} md={12} xl={6}>
                 <div style={{ position: 'relative' }}>
                   <Form.Label className="text-sm font-medium">OUTPUT</Form.Label>
                   <Form.Control

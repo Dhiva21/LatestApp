@@ -27,8 +27,8 @@ function App() {
     <MenuProvider>
      <Router>
       <Routes>
-        <Route path="/" element={<Register/>} />
-        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/" element={<LoginPage/>} />
         <Route path="/trends" element={<Trends/>} />
         <Route path="/summary" element={<Summarize  />} />
         <Route path="/flashcard" element={<FlashCard  />} />

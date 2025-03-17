@@ -24,11 +24,11 @@ export const MenuProvider = ({ children }) => {
     { icon: <IdCard size={20} />, activeIcon: <IdCard color="black" size={20} />, label: "Accounts", path: "/account" },
   ];
 
-  const users = [
-    { name: "Admin", email: "admin@gmail.com", password: "1" },
-    { name: "Dhivakar", email: "dhiva@gmail.com", password: "2" },
-    { name: "Vengat", email: "vengat@gmail.com", password: "3" },
-  ];
+  // const users = [
+  //   { name: "Admin", email: "admin@gmail.com", password: "1" },
+  //   { name: "Dhivakar", email: "dhiva@gmail.com", password: "2" },
+  //   { name: "Vengat", email: "vengat@gmail.com", password: "3" },
+  // ];
 
   const [userName, setUserName] = useState(sessionStorage.getItem("userName") || "");
   const [userEmail, setUserEmail] = useState(sessionStorage.getItem("userEmail") || "");
@@ -44,7 +44,7 @@ export const MenuProvider = ({ children }) => {
   }, [userName, userEmail]);
 
   return (
-    <MenuContext.Provider value={{ menuItems, users, userName, userEmail, setUserName, setUserEmail }}>
+    <MenuContext.Provider value={{ menuItems, userName, userEmail, setUserName, setUserEmail }}>
       {children}
     </MenuContext.Provider>
   );

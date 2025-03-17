@@ -112,7 +112,7 @@ function TrendingSelect({ selectedState,setSelectedState,region , setRegion }) {
   return (
     <>
       <Row>
-        <Col md={6} xs={12} >
+        <Col xl={6} md={12} xs={12} >
           <div>
             <Card className="p-3 trendingBox border-0">
               <Form.Label htmlFor="state">Select State/Region</Form.Label>
@@ -144,7 +144,7 @@ function TrendingSelect({ selectedState,setSelectedState,region , setRegion }) {
                           </Col>
           </Row>
         </Col>
-        <Col md={6} xs={12} >
+        <Col xl={6} md={12} xs={12} >
           <div>
             <TrendingText topics={trendingTopics} loading={loading} />
           </div>

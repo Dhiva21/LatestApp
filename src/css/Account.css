@@ -37,7 +37,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   .accounts {
       box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
       padding: 26px 43px;

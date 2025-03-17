@@ -10,7 +10,7 @@ const newsRoutes = require('./routes/tubesrcipt');
 const privotRoutes = require('./routes/privot');
 const employeeRegister= require('./routes/register');
 const employeeLogin= require('./routes/login')
-const employeeForm= require('./routes/employee')
+const employeeLogOut= require('./routes/logout')
 const morgan = require('morgan');
 const punycode = require('punycode/');
 const app = express();
@@ -50,7 +50,8 @@ app.use('/peer', peerRouter);
 app.use('/api', newsRoutes);
 app.use('/privot', privotRoutes);
 app.use('/register', employeeRegister);
-app.use('/login', employeeLogin);
+app.use('/logout', employeeLogOut);
+app.use('/', employeeLogin);
 // app.use('/form', employeeForm);
 // Start the server
 app.listen(PORT, () => {
