@@ -20,7 +20,7 @@ const SideNavBar = () => {
       
 
       <div
-        className="text-dark vh-100 sideNavBg d-md-block d-none"
+        className="text-dark vh-100 sideNavBg d-lg-block d-none"
         style={{
           width: isSidebarOpen ? "250px" : "80px",
 
@@ -189,7 +189,7 @@ const SideNavBar = () => {
 
 
       {/* Side Content (scrollable) */}
-      <div className="sideContent d-md-block d-none"
+      <div className="sideContent d-lg-block d-none"
         style={{
           marginLeft: isSidebarOpen ? "250px" : "80px",
         }}
