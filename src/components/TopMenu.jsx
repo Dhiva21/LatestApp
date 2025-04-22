@@ -87,7 +87,7 @@ console.log(userName, "Topmenu")
       <Container fluid>
          <Row className="w-100 align-items-end">
          <Col xl={3} md={6} xs={9}>
-  <Breadcrumb>
+  <Breadcrumb className="topTitle">
     <Breadcrumb.Item className="breadCrumbMain">Dashboard</Breadcrumb.Item>
      <span className="mx-2">&gt;</span>
     <Breadcrumb.Item active className="custom-breadcrumb "> {getLabel()}</Breadcrumb.Item>
@@ -115,7 +115,7 @@ console.log(userName, "Topmenu")
                 <div className="d-flex align-items-center gap-3 me-2">
                   {/* <span className="avatar-text">{initial}</span> */}
                   <Image src={`https://avatar.iran.liara.run/username?username=${userName}`} width="40" roundedCircle />
-                  <div className=" text-start fw-medium">
+                  <div className=" text-start fw-medium userAcc">
                   <p className="mb-0 d-none d-md-block">{userEmail}</p>
                   <small className="mb-0 d-none d-md-block">{userName}</small>
                   </div>
