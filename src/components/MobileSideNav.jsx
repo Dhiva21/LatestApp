@@ -15,7 +15,7 @@ function MobileSideNav() {
   return (
     <>
       {/* Mobile Navbar */}
-      <Navbar expand="lg" className="bg-body-dark text-light mobieNavBg d-block d-md-none">
+      <Navbar expand="lg" className="bg-body-dark text-light mobieNavBg d-block d-lg-none">
         <Container>
             <Row>
                 <Col xs={10}>
